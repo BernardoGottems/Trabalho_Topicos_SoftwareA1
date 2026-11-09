@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<hmtl lang="pt-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Qualidade de vinhos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Classificação de qualidade de vinhos</h1>
-    <p>teste para app de flask</p>
+    <p>
+        Sistema de classificação de qualidade de vinhos utilizando aprendizado de máquina. 
+    </p>
+    <nav>
+        <a href="/analise">Análise dos dados</a>
+        <a href="/previsao">Previsão de qualidade</a>
+    </nav>
+
 </body>
-</hmtl>
+</html>
