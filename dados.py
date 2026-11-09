@@ -54,3 +54,5 @@ plt.xlabel('Densidade')
 plt.ylabel('Álcool (%)')
 plt.legend()
 plt.savefig('static/grafico_dispersao.png', bbox_inches='tight')
+
+df.to_csv('data/winequality-limpo.csv', index=False)
