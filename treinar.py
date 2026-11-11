@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
+import joblib
 
 # Lê o arquivo CSV já tratado pela Pessoa 2
 df = pd.read_csv("data/winequality-limpo.csv")
@@ -48,7 +49,7 @@ y_pred_arvore = modelo_arvore.predict(X_test)
 
 acuracia_arvore = accuracy_score(y_test, y_pred_arvore)
 
-print("\nAcurácia da Decision Tree:")
+
 print(acuracia_arvore)
 print(f"\nAcurácia da Decision Tree: {acuracia_arvore:.2%}")
 
@@ -96,3 +97,14 @@ print(f"{acuracia_floresta:.2%}")
 
 print("\nMatriz de Confusão da Random Forest:")
 print(matriz_floresta)
+
+
+
+modelo_final = modelo_arvore
+
+print("\nModelo escolhido: Decision Tree")
+
+joblib.dump(modelo_final, "modelo_vinho.pkl")
+
+print("Modelo salvo com sucesso!")
+
