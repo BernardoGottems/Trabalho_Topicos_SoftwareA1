@@ -1,4 +1,4 @@
-from flask import Flask, render_template 
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -9,6 +9,12 @@ def index():
 @app.route('/analise')
 def analise():
     return render_template('analise.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    arquivo = request.files['arquivo']
+
+    return f'Arquivo recebido: {arquivo.filename}'
 
 if __name__ == '__main__':
     app.run(debug=True)

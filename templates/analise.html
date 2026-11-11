@@ -16,6 +16,18 @@
 
     <a href="/">Voltar para a página inicial</a>
 
+    <section class="upload">
+        <h2>Enviar conjunto de dados</h2>
+
+        <p>Selecione um arquivo CSV para analisar.</p>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="arquivo" accept=".csv" required>
+
+            <button type="submit">Enviar arquivo</button>
+        </form>
+    </section>
+
     <section class="graficos">
         <h2>Visualização dos dados</h2>
 
