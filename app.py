@@ -1,7 +1,10 @@
 import os
+
 import pandas as pd
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
+
+from modelo import prever_qualidade
 
 
 app = Flask(__name__)
@@ -15,6 +18,33 @@ def index():
 @app.route('/analise')
 def analise():
     return render_template('analise.html')
+
+@app.route('/resultados')
+def resultados():
+    return render_template('resultados.html')
+
+@app.route('/prever', methods=['POST'])
+def prever():
+    try:
+        alcohol = float(request.form['alcohol'])
+        volatile_acidity = float(request.form['volatile_acidity'])
+        density = float(request.form['density'])
+        sulphates = float(request.form['sulphates'])
+
+    except (ValueError, KeyError):
+        return render_template(
+            'resultados.html',
+            mensagem='Erro: preencha todos os campos com valores numéricos válidos.'
+        )
+
+    resultado = prever_qualidade(
+        alcohol,
+        volatile_acidity,
+        density,
+        sulphates
+    )
+
+    return render_template('resultados.html', resultado=resultado)
 
 @app.route('/upload', methods=['POST'])
 def upload():

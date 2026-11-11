@@ -23,12 +23,40 @@
 
         <form action="/upload" method="POST" enctype="multipart/form-data">
             <input type="file" name="arquivo" accept=".csv" required>
-
             <button type="submit">Enviar arquivo</button>
         </form>
+
         {% if mensagem %}
             <p class="mensagem">{{ mensagem }}</p>
-        {% endif %}    
+        {% endif %}
+    </section>
+
+    <section class="previsao" id="previsao">
+        <h2>Previsão da qualidade do vinho</h2>
+
+        <p>Informe as características do vinho para realizar a previsão.</p>
+
+        <form action="/prever" method="POST">
+
+            <label for="alcohol">Teor alcoólico:</label>
+            <input type="number" id="alcohol" name="alcohol"
+                step="any" required>
+
+            <label for="volatile_acidity">Acidez volátil:</label>
+            <input type="number" id="volatile_acidity" name="volatile_acidity"
+                step="any" required>
+
+            <label for="density">Densidade:</label>
+            <input type="number" id="density" name="density"
+                step="any" required>
+
+            <label for="sulphates">Sulfatos:</label>
+            <input type="number" id="sulphates" name="sulphates"
+                step="any" required>
+
+            <button type="submit">Prever qualidade</button>
+
+        </form>
     </section>
 
     <section class="graficos">

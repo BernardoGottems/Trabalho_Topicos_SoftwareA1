@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Resultados da previsão</h1>
+
+    {% if mensagem %}
+        <p class="mensagem">{{ mensagem }}</p>
+
+    {% elif resultado %}
+        <h2>Qualidade prevista:</h2>
+        <p class="resultado">{{ resultado }}</p>
+
+    {% else %}
+        <p>Os resultados da análise serão apresentados nesta página.</p>
+    {% endif %}
+
+    <a href="/analise">Voltar para a análise</a>
+
+    <a href="/">Voltar para a página inicial</a>
+
+</body>
+</html>
