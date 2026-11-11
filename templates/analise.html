@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Analise de dados</title>
+    <title>Análise de dados</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -10,10 +11,32 @@
     <h1>Análise de dados</h1>
 
     <p>
-        Aqui serão apresentados os dados e as análises estátisticas do conjunto de dados de vinhos. 
+        Aqui serão apresentados os dados e as análises estatísticas do conjunto de dados de vinhos.
     </p>
 
     <a href="/">Voltar para a página inicial</a>
+
+    <section class="graficos">
+        <h2>Visualização dos dados</h2>
+
+        <div class="grafico">
+            <h3>Acidez volátil</h3>
+            <img src="{{ url_for('static', filename='grafico_acidez.png') }}"
+                 alt="Gráfico de acidez volátil">
+        </div>
+
+        <div class="grafico">
+            <h3>Teor alcoólico</h3>
+            <img src="{{ url_for('static', filename='grafico_alcool.png') }}"
+                 alt="Gráfico de teor alcoólico">
+        </div>
+
+        <div class="grafico">
+            <h3>Gráfico de dispersão</h3>
+            <img src="{{ url_for('static', filename='grafico_dispersao.png') }}"
+                 alt="Gráfico de dispersão dos dados">
+        </div>
+    </section>
 
 </body>
 </html>
