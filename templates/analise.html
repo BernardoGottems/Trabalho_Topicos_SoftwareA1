@@ -26,6 +26,9 @@
 
             <button type="submit">Enviar arquivo</button>
         </form>
+        {% if mensagem %}
+            <p class="mensagem">{{ mensagem }}</p>
+        {% endif %}    
     </section>
 
     <section class="graficos">
