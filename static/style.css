@@ -42,6 +42,16 @@ nav a:hover {
     background-color: #641a26;
 }
 
+.dataframe {
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.dataframe th, .dataframe td {
+    padding: 8px 12px;
+}
+
 .graficos {
     width: 100%;
     max-width: 1000px;

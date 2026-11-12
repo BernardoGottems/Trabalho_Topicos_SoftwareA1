@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
 from modelo import prever_qualidade
+from dados import analisar_csv
 
 
 app = Flask(__name__)
@@ -14,7 +15,8 @@ COLUNAS_OBRIGATORIAS = [
     'alcohol',
     'volatile acidity',
     'density',
-    'sulphates'
+    'sulphates',
+    'quality'
 ]
 
 @app.route('/')
@@ -73,6 +75,9 @@ def upload():
 
     try:
         dados = pd.read_csv(arquivo, sep=',')
+        if len(dados.columns) == 1:
+            arquivo.seek(0)
+            dados = pd.read_csv(arquivo, sep=';')
 
     except pd.errors.EmptyDataError:
         return render_template(
@@ -111,12 +116,23 @@ def upload():
     arquivo.seek(0)
     arquivo.save(caminho)
 
+    try:
+        analisar_csv(caminho)
+    except Exception as e:
+        return render_template(
+            'analise.html',
+            mensagem=f'Erro ao gerar os gráficos: {e}'
+        )
+
+    dados_filtrados = dados[COLUNAS_OBRIGATORIAS]
     quantidade_linhas = len(dados)
     quantidade_colunas = len(dados.columns)
+    amostra_html = dados_filtrados.head().to_html(index=False)
 
     return render_template(
         'analise.html',
-        mensagem=f'Arquivo recebido: {nome_arquivo} | Registros: {quantidade_linhas} | Colunas: {quantidade_colunas}'
+        mensagem=f'Arquivo recebido: {nome_arquivo} | Registros: {quantidade_linhas} | Colunas: {quantidade_colunas}',
+        amostra = amostra_html
     )
 
 if __name__ == '__main__':

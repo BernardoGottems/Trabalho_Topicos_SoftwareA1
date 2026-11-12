@@ -59,7 +59,12 @@
         </form>
     </section>
 
+
     <section class="graficos">
+        {% if amostra %}
+        <h3>Amostra dos Dados</h3>
+        {{ amostra | safe }}
+        {% endif %}
         <h2>Visualização dos dados</h2>
 
         <div class="grafico">
